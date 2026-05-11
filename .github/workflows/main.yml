@@ -110,4 +110,3 @@ jobs:
           docker push ${{ secrets.REGISTRY }}/$ECR_REPOSITORY:${{ github.run_number }}
 
           docker push ${{ secrets.REGISTRY }}/$ECR_REPOSITORY:latest
-```
