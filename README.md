@@ -15,6 +15,7 @@ This project demonstrates a complete end-to-end DevOps CI/CD pipeline using:
 The application is automatically tested, scanned, containerized, pushed to Amazon ECR, and deployed to an Amazon EKS cluster using Helm.
 
 Architecture
+
 Developer Push
       ↓
 GitHub Actions CI/CD
@@ -36,19 +37,21 @@ Amazon EKS Cluster
 NGINX Ingress Controller
       ↓
 Live Application
+
+
 Technologies Used
-Technology	Purpose
+Technology	      Purpose
 GitHub Actions	CI/CD Automation
-Terraform	Infrastructure as Code
-Amazon EKS	Kubernetes Cluster
-Amazon ECR	Container Registry
-Docker	Containerization
-Helm	Kubernetes Package Management
-Kubernetes	Container Orchestration
-SonarCloud	Code Quality Analysis
-Maven	Java Build Tool
+Terraform	      Infrastructure as Code
+Amazon EKS	      Kubernetes Cluster
+Amazon ECR	      Container Registry
+Docker	      Containerization
+Helm	            Kubernetes Package Management
+Kubernetes	      Container Orchestration
+SonarCloud	      Code Quality Analysis
+Maven	Java        Build Tool
 NGINX Ingress	External Access to Application
-Route53	DNS Management
+Route53	      DNS Management
 Project Structure
 EKS_CI-CD-github-actions/
 │
@@ -67,18 +70,20 @@ EKS_CI-CD-github-actions/
 ├── pom.xml
 ├── sonar-project.properties
 └── README.md
+
 Features
-CI Pipeline
-Maven testing
-Checkstyle validation
-SonarCloud code analysis
-Maven packaging
-CD Pipeline
-Docker image build
-Push image to Amazon ECR
-Connect to EKS cluster
-Deploy application using Helm
-Kubernetes rollout verification
+* CI Pipeline
+* Maven testing
+* Checkstyle validation
+* SonarCloud code analysis
+* Maven packaging
+* CD Pipeline
+* Docker image build
+* Push image to Amazon ECR
+* Connect to EKS cluster
+* Deploy application using Helm
+* Kubernetes rollout verification
+* 
 GitHub Actions Workflow
 
 The GitHub Actions workflow automatically triggers on:
@@ -96,13 +101,13 @@ Kubernetes namespace: vprofile
 
 The deployment includes:
 
-Application Pod
-MySQL Database Pod
-RabbitMQ Pod
-Memcached Pod
-Kubernetes Services
-Kubernetes Ingress
-Helm Deployment
+* Application Pod
+* MySQL Database Pod
+* RabbitMQ Pod
+* Memcached Pod
+* Kubernetes Services
+* Kubernetes Ingress
+* Helm Deployment
 
 Deployment is handled using Helm:
 
@@ -145,25 +150,21 @@ Live Application
 Application URL:
 
 http://vproappgitops.tcapp.xyz/
+
+
 GitHub Repository
 
 Repository:
 
 https://github.com/tcollins520/EKS_CI-CD-github-actions
+
+
 Future Improvements
 
 Potential enhancements:
 
-ArgoCD GitOps
-Prometheus Monitoring
-Grafana Dashboards
-Horizontal Pod Autoscaler
-Blue/Green Deployments
-AWS Load Balancer Controller
-HTTPS with cert-manager
-ExternalDNS Automation
-Author
-
-Created by Tina Collins
-
-DevOps Engineer | Cloud Engineer | Kubernetes Enthusiast
+* ArgoCD GitOps
+* Blue/Green Deployments
+* AWS Load Balancer Controller
+* HTTPS with cert-manager
+* ExternalDNS Automation
