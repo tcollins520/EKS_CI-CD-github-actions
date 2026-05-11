@@ -38,22 +38,6 @@ NGINX Ingress Controller
       ↓
 Live Application
 
-
-Technologies Used
-Technology	      Purpose
-GitHub Actions	CI/CD Automation
-Terraform	      Infrastructure as Code
-Amazon EKS	      Kubernetes Cluster
-Amazon ECR	      Container Registry
-Docker	      Containerization
-Helm	            Kubernetes Package Management
-Kubernetes	      Container Orchestration
-SonarCloud	      Code Quality Analysis
-Maven	Java        Build Tool
-NGINX Ingress	External Access to Application
-Route53	      DNS Management
-Project Structure
-EKS_CI-CD-github-actions/
 │
 ├── .github/workflows/
 │   └── main.yml
