@@ -159,3 +159,8 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+appimage:
+  repository: "test"
+  tag: "latest"
+
