@@ -114,24 +114,45 @@ Verify ingress:
 kubectl get ingress -n vprofile
 Live Application
 
-Application URL:
-
-http://vproappgitops.tcapp.xyz/
-
-
-GitHub Repository
-
-Repository:
-
-https://github.com/tcollins520/EKS_CI-CD-github-actions
-
-
-Future Improvements
-
-Potential enhancements:
-
-* ArgoCD GitOps
-* Blue/Green Deployments
-* AWS Load Balancer Controller
-* HTTPS with cert-manager
-* ExternalDNS Automation
+HTTPS / TLS Implementation
+Secure Ingress with cert-manager and Let’s Encrypt
+Implemented automated HTTPS for the Kubernetes application running on Amazon EKS using:
+•	cert-manager 
+•	Let’s Encrypt 
+•	Route53 DNS01 challenge 
+•	NGINX Ingress Controller 
+Features
+•	Automated TLS certificate issuance 
+•	Automatic certificate renewal 
+•	Secure HTTPS ingress routing 
+•	DNS-based domain validation 
+•	Production-ready Kubernetes ingress setup 
+Technologies Used
+•	Kubernetes Ingress 
+•	cert-manager 
+•	Let’s Encrypt ACME 
+•	AWS Route53 
+•	NGINX Ingress Controller 
+•	Helm 
+DNS Architecture
+GoDaddy → Route53 → EKS NGINX Ingress → Application
+TLS Workflow
+1.	cert-manager monitors ingress resources 
+2.	Let’s Encrypt DNS01 challenge is generated 
+3.	cert-manager creates TXT validation records in Route53 
+4.	Let’s Encrypt validates domain ownership 
+5.	TLS certificate is automatically issued 
+6.	HTTPS traffic is terminated at the NGINX ingress controller 
+Kubernetes Resources Configured
+•	ClusterIssuer 
+•	Certificate 
+•	Ingress 
+•	Route53 DNS records 
+•	Kubernetes TLS secrets 
+Security Improvements
+•	Encrypted HTTPS traffic 
+•	Trusted public certificate authority 
+•	Automated certificate lifecycle management 
+•	Elimination of self-signed certificates 
+HTTPS Endpoint
+https://vproappgitops.tcapp.xyz
