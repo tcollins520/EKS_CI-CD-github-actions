@@ -1,49 +1,58 @@
 name: vprofile actions
-on: workflow_dispatch
+
+on:
+  workflow_dispatch:
+
 env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: vprofileapp
   EKS_CLUSTER: vproapp-gitops-eks
 
-
-
 jobs:
   Testing:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Code checkout
+      # Checkout Source Code
+      - name: Code Checkout
         uses: actions/checkout@v4
 
-      - name: Maven test
+      # Setup Java 11
+      - name: Setup Java 11
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '11'
+          cache: maven
+
+      # Maven Test
+      - name: Maven Test
         run: mvn test
 
+      # Checkstyle
       - name: Checkstyle
         run: mvn checkstyle:checkstyle
 
-      # Setup java 11 to be default (sonar-scanner requirement as of 5.x)
-      - name: Set Java 11
-        uses: actions/setup-java@v3
-        with:
-         distribution: 'temurin' # See 'Supported distributions' for available options
-         java-version: '11'
-
-      # Setup sonar-scanner
-      - name: Setup SonarQube
+      # Setup SonarQube Scanner
+      - name: Setup SonarQube Scanner
         uses: warchant/setup-sonar-scanner@v7
 
-
-      # Run sonar-scanner
+      # SonarQube Scan
       - name: SonarQube Scan
-        run: sonar-scanner
-           -Dsonar.host.url=${{ secrets.SONAR_URL }}
-           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-           -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
-           -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-           -Dsonar.sources=src/
-           -Dsonar.junit.reportsPath=target/surefire-reports/ 
-           -Dsonar.jacoco.reportsPath=target/jacoco.exec 
-           -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
-           -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/  
+        run: |
+          sonar-scanner \
+          -Dsonar.host.url=${{ secrets.SONAR_URL }} \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+          -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
+          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
+          -Dsonar.sources=src/ \
+          -Dsonar.junit.reportsPath=target/surefire-reports/ \
+          -Dsonar.jacoco.reportsPath=target/jacoco.exec \
+          -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
 
-      
-       
+        timeout-minutes: 5
+
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_URL }}
+```
