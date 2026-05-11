@@ -38,23 +38,6 @@ NGINX Ingress Controller
       ↓
 Live Application
 
-│
-├── .github/workflows/
-│   └── main.yml
-│
-├── helm/
-│   └── vprofilecharts/
-│       ├── templates/
-│       ├── Chart.yaml
-│       └── values.yaml
-│
-├── kubernetes/
-├── src/
-├── Dockerfile
-├── pom.xml
-├── sonar-project.properties
-└── README.md
-
 Features
 * CI Pipeline
 * Maven testing
